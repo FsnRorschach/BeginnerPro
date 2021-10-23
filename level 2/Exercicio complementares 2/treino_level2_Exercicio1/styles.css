@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+body {
+    background: #0000003a;
+}
+
+header h1 {
+    text-align: center;
+    color: #003cff;
+    font-size: 4em;
+}
+
+div#texts {
+    background-color: #fd6161;
+    border-radius: 50px;
+}
+
+#paragrafo-1 {
+    color: #2222f8;
+}
+
+#paragrafo-2,
+#paragrafo-3 {
+    color: #1aa51a
+}
+
+div p {
+    padding: 40px 20px;
+}
+
+section h1 {
+    text-align: center;
+    color: orange;
+    font-size: 4em;
+}
+
+#ahrefLink {
+    color: #0026ff8e;
+    text-decoration: none;
+    margin: 0 20px 0 20px;
+    font-size: 3em;
+}
+
+#ahrefInst {
+    color: #fa5a5abb;
+    text-decoration: none;
+    margin: 0 20px 0 20px;
+    font-size: 3em;
+}
+
+#ahrefBom,
+#ahrefGirH {
+    color: #7efac0bb;
+    text-decoration: none;
+    margin: 0 30px 0 30px;
+    font-size: 3em;
+}
+
+#div_ahref {
+    text-align: center;
+}
+
+#div_img {
+    width: 800px;
+    margin: 0 auto;
+}
+
+div img {
+    width: 800px;
+}
+
+p {
+    color: white;
+    background-color: black;
+}
+
+/* #myParagraph {
+    color: red;
+} */
