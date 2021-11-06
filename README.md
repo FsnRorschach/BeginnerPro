@@ -1,5 +1,9 @@
 Curso  Beginner Pró
 
+link repositorio do material didatico 
+
+https://ffavareto.notion.site/ffavareto/PDF-das-aulas-Beginners-PRO-a88017dfca464c66829eb05d98bc83af
+
 Curso voltado para o desenvolvimento em linguagens HTML, CSS e Javascript
 
 15 levels

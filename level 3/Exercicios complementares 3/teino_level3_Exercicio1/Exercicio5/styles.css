@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+body {
+    background: #060c25;
+}
+
+section {
+    width: 50%;
+    height: 200px;
+    margin: 320px auto;
+    background: #8181fcbd;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+button {
+    margin: 20px 0 0;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: 1px solid #fff;
+    display: inline-block;
+    color: rgb(0, 0, 0);
+}
+
+#divButton,
+h1 {
+    text-align: center;
+    margin: 10px;
+}
+
+footer {
+    text-align: center;
+}
+
+a {
+    margin: 20px 0 0;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: 1px solid #fff;
+    display: inline-block;
+    color: #fff;
+}
