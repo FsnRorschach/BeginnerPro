@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <main>
+
+        <h1>Crie o CSS de um botão de forma rápida e simples!</h1>
+
+        <section>
+            <form name="estilo">
+                <div id="background_color">
+                    <label for="background_color">Escolha uma cor de fundo para o botão (background-color)</label>
+                    <br>
+                    <input type="color" name="background_color" id="background_color">
+                </div>
+                <br>
+
+                <div id="paddingTopBotton">
+                    <label for="paddingTopBotton">Defina o padding top e bottom do botão</label>
+                    <br>
+                    <input type="number" name="paddingTopBotton" id="paddingTopBotton">
+                </div>
+                <br>
+
+                <div id="paddingLeftRigth">
+                    <label for="paddingLeftRigth">Defina o padding left e rigth do botão</label>
+                    <br>
+                    <input type="number" name="paddingLeftRigth" id="paddingLeftRigth">
+                </div>
+                <br>
+
+                <div id="text">
+                    <label for="text">Qual o texto do botão?</label>
+                    <br>
+                    <input type="text" name="text" id="text">
+                </div>
+                <br>
+
+                <div id="border_radius">
+                    <label for="border_radius">Defina o arredondamento das bordas do botão (border_radius)</label>
+                    <br>
+                    <input type="number" name="border_radius" id="border_radius">
+                </div>
+                <br>
+
+                <div id="font_size">
+                    <label for="font_size">Defina o tamanho da fonte do botão (font_size)</label>
+                    <br>
+                    <input type="number" name="font_size" id="font_size">
+                </div>
+                <br>
+
+                <div id="color">
+                    <label for="color">Defina a cor da fonte do botão (color)</label>
+                    <br>
+                    <input type="color" name="color" id="color">
+                </div>
+                <br>
+
+            </form>
+
+            <div id="resultado">
+                <button>Botão</button>
+            </div>
+        </section>
+
+        <div>
+            <label for="css">Clique no botão estilizado para ver o CSS</label>
+            <br>
+            <textarea name="css" id="css" cols="100" rows="2"></textarea>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

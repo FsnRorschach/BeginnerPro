@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercicio 16 level 4</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        section {
+            width: 50%;
+            padding: 5px;
+            margin: 20vh auto;
+            display: flex;
+            flex-direction: column;
+            background: #fa5b11;
+            border-radius: 10px;
+            gap: 10px
+        }
+
+        form {
+            margin: 5px;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        header,
+        #divform,
+        #cardtemplate {
+            border: 1px solid #05050582;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <header>
+            <h1>
+                Cadastro
+            </h1>
+        </header>
+        <div id="divform">
+            <form>
+
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" placeholder="Digite seu Nome" required>
+                <label for="idade">Idade</label>
+                <input type="number" id="idade" placeholder="Digite sua idade" required>
+                <label for="profissao">Nome</label>
+                <select name="profissao" id="profissao">
+                    <option disabled selected>Selecione uma profissão</option>
+                    <option value="Desenvolvedor">Desenvolvedor</option>
+                    <option value="Dentista">Dentista</option>
+                    <option value="Policial">Policial</option>
+                    <option value="Professor">Professor</option>
+                </select>
+                <button>Enviar Dados</button>
+
+            </form>
+        </div>
+    </section>
+    <section id="sectionCard" style="display: none">
+        <div id="cardtemplate">
+
+        </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+
+</html>

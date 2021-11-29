@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            text-decoration: none;
+        }
+
+        body {
+            background: #fbffc5;
+            min-width: 768px;
+        }
+
+        header {
+            text-align: center;
+            height: 50px;
+            background: #224072;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #card1 {
+            text-align: center;
+            height: 40px;
+            background: #224072;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #conteiner {
+            width: 60%;
+            margin: 75px auto;
+        }
+
+        #conteiner_form,
+        #conteiner_card {
+            width: 80%;
+            margin: auto;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            border-left: 2px solid #224072;
+            border-right: 2px solid #224072;
+            padding: 20px 45px;
+            gap: 20px;
+        }
+
+        #conteiner_card div {
+            display: flex;
+            flex-direction: row;
+            text-align: center;
+            border-left: 2px solid #224072;
+            border-right: 2px solid #224072;
+            padding: 20px 0px;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .numSorte {
+            height: 40px;
+        }
+
+        button {
+            background: #74edfd;
+            border-radius: 10px;
+            height: 40px;
+        }
+
+        .resultSorte {
+            width: 50px;
+            height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Loterias</h1>
+    </header>
+    <section id="conteiner">
+        <section id="conteiner_form">
+            <form>
+                <h3>Numeros da sorte de 1 a 60</h3>
+                <label for="number1"><strong>Aposta 1:</strong>
+                    <input type="number" class="numSorte" id="number1" placeholder="1" required
+                        onblur="validRepetNumber(this)"></label>
+                <label for="number2"><strong>Aposta 2:</strong>
+                    <input type="number" class="numSorte" id="number2" placeholder="2" required
+                        onblur="validRepetNumber(this)"></label>
+                <label for="number3"><strong>Aposta 3:</strong>
+                    <input type="number" class="numSorte" id="number3" placeholder="3" required
+                        onblur="validRepetNumber(this)"></label>
+                <label for="number4"><strong>Aposta 4:</strong>
+                    <input type="number" class="numSorte" id="number4" placeholder="4" required
+                        onblur="validRepetNumber(this)"></label>
+                <label for="number5"><strong>Aposta 5:</strong>
+                    <input type="number" class="numSorte" id="number5" placeholder="5" required
+                        onblur="validRepetNumber(this)"></label>
+                <label for="number6"><strong>Aposta 6:</strong>
+                    <input type="number" class="numSorte" id="number6" placeholder="6" required
+                        onblur="validRepetNumber(this)"></label>
+                <button id="jogar">Jogar</button>
+                <button id="limpar">Limpar Apostas</button>
+            </form>
+        </section>
+        <section id="conteiner_card" style="display:none">
+
+        </section>
+    </section>
+    <script src="script.js"></script>
+</body>
+
+</html>
