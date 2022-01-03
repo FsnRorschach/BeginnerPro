@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css">
+    <title>Desafio da Requisição CEP - Axios</title>
+</head>
+
+<body>
+    <header>
+        <div>
+            <h2>Desafio da Requisição CEP - Axios</h2>
+            <h2>Digite o cep a ser buscado</h2>
+            <label>Cep:</label>
+            <input name="cep" type="text" id="cep" value="" size="10" maxlength="9" onblur="pesquisacep(this.value)" />
+        </div>
+    </header>
+    <section>
+        <form>
+            <label>Rua:</label>
+            <input name="rua" type="text" id="rua" size="60" />
+            <label>Numero:</label>
+            <input name="numero" type="number" id="number" size="20" />
+            <label>Bairro:</label>
+            <input name="bairro" type="text" id="bairro" size="40" />
+            <label>Cidade:</label>
+            <input name="cidade" type="text" id="cidade" size="40" />
+            <label>Estado:</label>
+            <input name="uf" type="text" id="uf" size="2" />
+            <label>IBGE:</label>
+            <input name="ibge" type="text" id="ibge" size="8" />
+            <button onclick="limpa_formulário_cep();  return false;">Limpar</button>
+        </form>
+    </section>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+
+</html>
