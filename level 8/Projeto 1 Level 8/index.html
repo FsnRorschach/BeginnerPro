@@ -6,28 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
     <title>Projeto Level 8</title>
 </head>
 
 <body>
     <header>
-        <h1>Consulte sua musica Deezer</h1>
+        <div id="btn_home">
+            <a href="#"><span class="material-icons">home</span>Inicio</a>
+        </div>
+        <div id="text_title">
+            <h1>BeginnerPRO Deezer</h1>
+        </div>
+        <div id="input_search">
+            <label for="search">
+                <input type="text" id="search" placeholder="Search Music">
+                <span class="material-icons" id="searchOk">
+                    search
+                </span>
+            </label>
+        </div>
     </header>
     <main>
-        <section id="sectionSearch">
-            <input type="text" id="search" placeholder="Search Music">
-            <span class="material-icons" id="searchOk">
-                search
-            </span>
-        </section>
-        <section id="sectionlist">
+        <section class="sectionlist" id="sectionlist">
 
         </section>
     </main>
-    <footer>
-
-    </footer>
     <script src="script.js"></script>
 </body>
 
