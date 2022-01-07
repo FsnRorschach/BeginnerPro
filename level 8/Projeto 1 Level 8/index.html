@@ -6,6 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
+        integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
+        crossorigin="anonymous" eferrerpolicy="no-referrer"></script>
+    <script type="text/JavaScript" src="jplayer/jPlayer-2.9.2/jPlayer-2.9.2/dist/jplayer/jquery.jplayer.js"></script>
+    <script type="text/JavaScript" src="jplayer/jPlayer-2.9.2/jPlayer-2.9.2/dist/jplayer/jquery.jplayer.min.js">
+    </script>
     <link rel="stylesheet" href="styles.css">
     <title>Projeto Level 8</title>
 </head>
@@ -13,7 +19,7 @@
 <body>
     <header>
         <div id="btn_home">
-            <a href="#"><span class="material-icons">home</span>Inicio</a>
+            <a href="#"><span class="material-icons">home</span><span>Inicio</span></a>
         </div>
         <div id="text_title">
             <h1>BeginnerPRO Deezer</h1>
@@ -28,11 +34,74 @@
         </div>
     </header>
     <main>
+        <section class="sectionHist" id="sectionHist">
+
+        </section>
         <section class="sectionlist" id="sectionlist">
 
         </section>
     </main>
+    <footer style="display:none">
+        <div class="top-bar">
+            <div class="container">
+                <div class="player-controls">
+                    <div id="div_previous">
+                        <span class="material-icons player-prev">
+                            skip_previous
+                        </span>
+                        <span class="player-prev">
+                            Prev
+                        </span>
+                    </div>
+                    <div id="div_play">
+                        <span class="material-icons player-play">
+                            play_circle
+                        </span>
+                        <span class="player-play">
+                            Play
+                        </span>
+                    </div>
+                    <div id="div_pause">
+                        <span class="material-icons player-pause">
+                            pause_circle
+                        </span>
+                        <span class="player-pause">
+                            Pause
+                        </span>
+                    </div>
+                    <div id="div_stop">
+                        <span class="material-icons player-stop">
+                            stop_circle
+                        </span>
+                        <span class="player-stop">
+                            Stop
+                        </span>
+                    </div>
+                    <div id="div_next">
+                        <span class="material-icons player-next">
+                            skip_next
+                        </span>
+                        <span class="player-next">
+                            Next
+                        </span>
+                    </div>
+
+                </div>
+                <div class="player"></div>
+                <div id="div_timeline">
+                    <div class="player-timeline">
+                        <div class="player-timeline-control"></div>
+                    </div>
+                </div>
+
+                <div class="player-display">
+                    Playing: <span class="player-current-track"></span>
+                </div>
+            </div>
+        </div>
+    </footer>
     <script src="script.js"></script>
+
 </body>
 
 </html>

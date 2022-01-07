@@ -12,12 +12,12 @@ html {
 body {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     background: rgb(0, 0, 4);
     background: linear-gradient(180deg, rgba(0, 0, 4, 1) 0%, rgba(3, 23, 42, 0.9528186274509804) 50%, rgba(6, 66, 78, 1) 100%);
     background-repeat: no-repeat;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 header {
@@ -27,10 +27,26 @@ header {
     align-items: center;
     justify-content: space-around;
     border-bottom: 2px solid #ffffff;
+    height: 80px;
 }
 
 header div {
     width: 30%;
+}
+
+header div a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    text-decoration: none;
+    color: #ffff;
+    margin-left: 30px;
+}
+
+header div label {
+    float: right;
+    margin-right: 30px;
 }
 
 #text_title h1 {
@@ -47,17 +63,39 @@ header div {
 
 #searchOk {
     position: relative;
-    margin-left: -35px;
+    height: 38px;
+    width: 38px;
+    margin-left: -30px;
+    z-index: 1;
+    cursor: pointer;
+}
+
+#searchOk:focus {
+    position: relative;
+    height: 38px;
+    width: 38px;
+    margin-left: -30px;
     z-index: 1;
     cursor: pointer;
 }
 
 main {
+    display: flex;
     width: 90%;
     margin: 30px auto;
+    margin-bottom: 120px;
+    flex-direction: row;
 }
 
-.sectionlist {
+#sectionlist {
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cardface {
     width: 250px;
     height: 250px;
     perspective: 700px;
@@ -66,23 +104,35 @@ main {
 
 .cardfront,
 .cardback {
+    position: absolute;
     width: 100%;
     height: 100%;
-    position: absolute;
     padding: 10px;
     border-radius: 10px;
-    transition: 700ms;
+    transition: 900ms;
 }
 
 .cardfront {
-    background: rgba(26, 52, 73, 0.835);
     z-index: 1;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
 }
 
 .cardback {
-    background: rgba(51, 105, 56, 0.835);
+    background: rgba(31, 44, 59, 0.835);
     transform: rotateY(-180deg);
     backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    align-content: center;
+}
+
+.cardback h3,
+.cardback h4 {
+    height: 40px;
+    color: #ffffff;
 }
 
 .cardface:hover .cardfront {
@@ -95,7 +145,110 @@ main {
     z-index: 1;
 }
 
-.cardfront {
-    background-repeat: no-repeat;
-    background-size: cover;
+#card_span_play {
+    font-size: 45px;
+}
+
+/* player*/
+
+.container {
+    margin: auto;
+    width: 960px;
+}
+
+.top-bar {
+    width: 100%;
+    height: 100px;
+    background: #141414;
+    color: #888;
+    line-height: 30px;
+}
+
+.top-bar .player-controls {
+    height: 100px;
+    float: left;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.top-bar .player-controls span {
+    cursor: pointer;
+    padding: 0 5px;
+    -webkit-transition: all linear 0.2s;
+}
+
+.top-bar .player-controls span:hover {
+    color: #EEE;
+}
+
+.top-bar .player-display {
+    float: left;
+    float: right;
+    margin-left: 50px;
+}
+
+.top-bar .player-display .player-current-track {
+    color: white;
+}
+
+.top-bar .player {
+    float: left;
+}
+
+.top-bar #div_timeline {
+    width: 300px;
+    height: 100px;
+    float: left;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.top-bar .player-timeline {
+    float: left;
+    max-width: 300px;
+    width: 300px;
+    height: 15px;
+    border-radius: 10px;
+    background: #555;
+    margin: 0 20px;
+}
+
+.top-bar .player-timeline-control {
+    height: 15px;
+    background: #999;
+    border-radius: 10px;
+}
+
+.top-bar .player-display {
+    width: 300px;
+    height: 100px;
+    float: right;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#div_previous,
+#div_play,
+#div_pause,
+#div_stop,
+#div_next {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+
+/* Footer*/
+footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0
+}
+
+.position-relative {
+    position: relative
 }
