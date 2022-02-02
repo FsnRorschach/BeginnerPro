@@ -1,0 +1,16 @@
+#search {
+    height: 50px;
+    margin: 15px 0;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+}
+
+#searchOk {
+    position: relative;
+    height: 38px;
+    width: 38px;
+    margin-left: -45px;
+    z-index: 1;
+    cursor: pointer;
+}

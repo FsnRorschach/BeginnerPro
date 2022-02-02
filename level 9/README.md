@@ -36,5 +36,3 @@ Liderança
 - Autonomia
 - Autoresponsabilidade
 
-Colaboração
-

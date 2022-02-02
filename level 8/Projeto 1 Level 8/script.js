@@ -1,5 +1,5 @@
 let sectionList = document.getElementById('sectionlist');
-let sectionHist = document.getElementById('sectionHist');
+let tableHist = document.getElementById('table');
 
 let dataCard = '';
 let playlist = [];
@@ -19,6 +19,10 @@ document.getElementById('searchOk').addEventListener('click', (evt) => {
     document.getElementById('sectionHist').style.display = 'none';
     clearPlayer();
     let search = document.getElementById('search').value;
+    if (!search) {
+        alert("Insira um nome válido para consulta sua música!");
+        document.getElementById('search').value = "";
+    }
     let url = "https://deezerdevs-deezer.p.rapidapi.com/search?q=" + search;
     try {
         fetch(url, {
@@ -54,19 +58,17 @@ document.getElementById('searchOk').addEventListener('click', (evt) => {
 });
 
 let mylistHistoric = (array_obj) => {
-    sectionHist.innerHTML = '';
+    console.log(tableHist);
+    tableHist.innerHTML = '';
     console.log(array_obj);
 
     if (array_obj.length > 0) {
         array_obj.forEach((element, index) => {
-            sectionHist.innerHTML += `<div>
-                                            <table>
-                                                <thead></thead>
-                                                <tbody>
-                                                    <td id="artista">${array_obj[index].pesquisa}</td>
-                                                </tbody>
-                                            </table> 
-                                        </div>
+            tableHist.innerHTML += `
+                                            <tr>
+                                                <td id="imgAlbum"><img id="imgAlbum" src="${array_obj[index].img_album}" alt="${array_obj[index].artista}"></td>
+                                                <td id="artista">${array_obj[index].artista}</td>
+                                            </tr>
                                         `;
         });
     }
@@ -96,7 +98,8 @@ let card = (data) => {
 
     }
     objList.push({
-        'pesquisa': data[0].artist.name
+        'artista': data[0].artist.name,
+        'img_album': data[0].album.cover
     });
     console.log(objList);
     localStorage.setItem('myList', JSON.stringify(objList));

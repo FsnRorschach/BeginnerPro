@@ -1,0 +1,37 @@
+body {
+    background: rgba(30, 35, 37, 0.89);
+}
+
+.container {
+    padding: 30px 10px;
+}
+
+#sec_form,
+#sec_table {
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 25px 5px;
+}
+
+form div {
+    margin: 10px 0;
+}
+
+label {
+    color: #ffffff;
+}
+
+#cadastrar_form,
+#cadastrar_list {
+    width: 300px;
+    font-size: 1.1em;
+    color: #ffffff;
+}
+
+footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    background: #e6dede;
+}
