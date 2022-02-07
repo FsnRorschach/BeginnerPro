@@ -1,13 +1,35 @@
-//variaveis globais
-let objcad = {};
-let editIndex = "";
-let lasChange = "";
+import {
+    mask,
+    validateEmail
+} from './mask.js';
 
-let alertPlaceholder = document.getElementById('liveAlertPlaceholder');
+import {
+    getLocalStorage
+} from './localStorage.js';
+
+import {
+    mostraCadastro,
+    mostraLista,
+    mostraIframe,
+    closeAlert,
+    searchUser,
+    cadastrar,
+    alert,
+    setList,
+    deletalinha,
+    editalinha
+} from './functions.js';
+
+//variaveis globais
+
+console.log("Aplicação feita por Fabio Novais, ");
+console.log("para o modulo 10 do Curso Beginner PRO.");
+console.log("Faculdade IV2");
+console.log("https://faculdadeiv2.com.br/");
+
 let search = document.getElementById('search');
 
-let listCadastro = JSON.parse(localStorage.getItem('cadastros')) || [];
-let listSearch = [];
+export let listCadastro = getLocalStorage() || [];
 
 window.onload = function () {
     if (listCadastro.length == 0) {
@@ -15,226 +37,38 @@ window.onload = function () {
     } else {
         mostraLista();
         setList("Lcadastro");
+        deletalinha();
+        editalinha();
     }
 };
 
-let cadastrar = () => {
-
-    let msg = false;
-
-    let nome = document.getElementById('nome').value.trim();
-    let sobrenome = document.getElementById('sobrenome').value.trim();
-    let rg = document.getElementById('rg').value.trim();
-    let cpf = document.getElementById('cpf').value.trim();
-    let email = document.getElementById('email').value.trim();
-    let telefone = document.getElementById('telefone').value.trim();
-    let cep = document.getElementById('cep').value.trim();
-    let numero = document.getElementById('numero').value.trim();
-    let rua = document.getElementById('rua').value.trim();
-    let bairro = document.getElementById('bairro').value.trim();
-    let cidade = document.getElementById('cidade').value.trim();
-    let estado = document.getElementById('estado').value.trim();
-
-    objcad = {
-        "nome": nome.toLowerCase(),
-        "sobrenome": sobrenome.toLowerCase(),
-        "rg": rg,
-        "cpf": cpf,
-        "email": email.toLowerCase(),
-        "telefone": telefone,
-        "cep": cep,
-        "numero": numero,
-        "rua": rua,
-        "bairro": bairro,
-        "cidade": cidade,
-        "estado": estado,
-        "data": formatDate()
-    };
-
-    msg = chkNullfield(objcad);
-    if (msg == true) {
-        return;
-    }
-
-    if (editIndex != "") {
-        setEditCadastro(objcad);
-    } else {
-        setCadastro(objcad);
-    }
-};
-
-let alert = (message, type) => {
-    let wrapper_msg = document.createElement('div');
-    wrapper_msg.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert"><img src="icon/logo-header.png" alt="" width="48" height="60"> Beginners PRO: ' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-
-    alertPlaceholder.append(wrapper_msg);
-};
-
-let chkNullfield = (obj) => {
-    let msg = "";
-    for (const property in objcad) {
-        if (!objcad[property]) {
-            msg += `Campo ${property} vazio, Preencha para continuar. \n`;
-        }
-    }
-    if (msg != "") {
-        alert(msg, 'danger');
-        return true;
-    }
-};
-
-let mostraCadastro = () => {
-    document.getElementById('sec_btn_cadastrar').style.display = "none";
-    document.getElementById('sec_iframe1').style.display = "none";
-    document.getElementById('sec_table').style.display = "none";
-    document.getElementById('sec_form').style.display = "block";
-    clearForm();
-};
-
-let mostraLista = () => {
-    document.getElementById('sec_btn_cadastrar').style.display = "block";
-    document.getElementById('sec_iframe1').style.display = "none";
-    document.getElementById('sec_table').style.display = "block";
-    document.getElementById('sec_form').style.display = "none";
-};
-
-let mostraIframe = () => {
-    document.getElementById('sec_btn_cadastrar').style.display = "block";
-    document.getElementById('sec_iframe1').style.display = "block";
-    document.getElementById('sec_table').style.display = "none";
-    document.getElementById('sec_form').style.display = "none";
-}
-
-let setCadastro = (obj) => {
-    listCadastro.unshift(obj);
-    localStorage.setItem('cadastros', JSON.stringify(listCadastro));
-    window.onload();
-};
-
-let setEditCadastro = (obj) => {
-    console.log(obj);
-    console.log(editIndex);
-    listCadastro[editIndex] = obj;
-    localStorage.setItem('cadastros', JSON.stringify(listCadastro));
-    window.onload();
-};
-
-let setList = (params) => {
-    deletaList();
-    const sec_list = document.querySelector('#sec_table table tbody');
-    let list;
-    console.log(params);
-    if (params == "Lcadastro") {
-        list = listCadastro;
-    } else if (params == "Lsearch") {
-        list = listSearch;
-        console.log(list);
-    }
-    list.forEach((element, index) => {
-        const tr_list = document.createElement('tr');
-        sec_list.appendChild(tr_list);
-        tr_list.innerHTML += `                                    
-                                <td>${list[index].nome[0].toUpperCase() + list[index].nome.substr(1)} ${list[index].sobrenome[0].toUpperCase() + list[index].sobrenome.substr(1)}</td>
-                                <td>${list[index].rg}</td>
-                                <td>${list[index].cpf}</td>
-                                <td>${list[index].email}</td>
-                                <td>${list[index].telefone}</td>
-                                <td>${list[index].cidade} - ${list[index].estado}</td>
-                                <td>${list[index].rua}, ${list[index].numero}</td>
-                                <td>${list[index].data}</td>
-                                <td><span onclick="editalinha(${index})">
-                                <img src="icon/edit-2.svg" alt="" width="30" height="24">
-                                </span></td>
-                                <td><span onclick="deletalinha(${index})">
-                                <img src="icon/user-x.svg" alt="" width="30" height="24">
-                                </span></td>
-                            `;
-
+document.querySelectorAll('input').forEach(input => {
+    const campo = input.getAttribute('id');
+    input.addEventListener('input', e => {
+        e.target.value = mask[campo](e.target.value);
     });
-};
+    input.addEventListener('paste', E => {
+            E.preventDefault();
+            return false;
+        },
+        true
+    );
+    input.onkeydown = function (event) {
+        let tecla = event.keyCode;
+        if (tecla == 13) {
+            let todosFields = document.getElementsByTagName("input");
+            for (let k = 0; k < todosFields.length; k++) {
+                if (todosFields[k].getAttribute("id") == this.getAttribute("id")) {
+                    todosFields[k + 1].focus();
+                    break;
 
-let clearForm = () => {
-    document.getElementById('nome').value = '';
-    document.getElementById('sobrenome').value = '';
-    document.getElementById('rg').value = '';
-    document.getElementById('cpf').value = '';
-    document.getElementById('email').value = '';
-    document.getElementById('telefone').value = '';
-    document.getElementById('cep').value = '';
-    document.getElementById('numero').value = '';
-    document.getElementById('rua').value = '';
-    document.getElementById('bairro').value = '';
-    document.getElementById('cidade').value = '';
-    document.getElementById('estado').value = '';
-    document.getElementById('nome').focus();
-};
+                }
+            }
+        }
+    };
+});
 
-let deletaList = () => {
-    const sec_list = document.querySelector('#sec_table table tbody');
-    sec_list.innerHTML = '';
-};
-
-let editalinha = (index) => {
-    mostraCadastro();
-
-    document.getElementById('nome').value = listCadastro[index].nome;
-    document.getElementById('sobrenome').value = listCadastro[index].sobrenome;
-    document.getElementById('rg').value = listCadastro[index].rg;
-    document.getElementById('cpf').value = listCadastro[index].cpf;
-    document.getElementById('email').value = listCadastro[index].email;
-    document.getElementById('telefone').value = listCadastro[index].telefone;
-    document.getElementById('cep').value = listCadastro[index].cep;
-    document.getElementById('numero').value = listCadastro[index].numero;
-    document.getElementById('rua').value = listCadastro[index].rua;
-    document.getElementById('bairro').value = listCadastro[index].bairro;
-    document.getElementById('cidade').value = listCadastro[index].cidade;
-    document.getElementById('estado').value = listCadastro[index].estado;
-
-    edt = true;
-    editIndex = index;
-};
-
-// formata vizualização da data e hora
-let formatDate = () => {
-    let data = new Date();
-    let d = data.getDate();
-    let m = formtMonth(data.getMonth());
-    let a = data.getFullYear();
-    let h = formtHora(data.getHours());
-    let min = formtHora(data.getMinutes());
-    let seg = formtHora(data.getSeconds());
-    let dataAtual = d + "/" + m + "/" + a + "  " + h + ":" + min + "'" + seg;
-    return dataAtual;
-};
-
-// formata o digitos da hora, minutos e segundos
-let formtHora = (val) => {
-    let format = val.toString();
-    if (format.length == 1) {
-        return "0" + format;
-    } else {
-        return format;
-    }
-
-};
-
-let formtMonth = (val) => {
-    val = val + 1;
-    let format = val.toString();
-    if (format.length == 1) {
-        return "0" + format;
-    } else {
-        return format;
-    }
-};
-
-let deletalinha = (index) => {
-    listCadastro.splice(index, 1);
-    localStorage.setItem('cadastros', JSON.stringify(listCadastro));
-    window.onload();
-};
-
-document.getElementById('email').addEventListener('blur', (element) => {
+document.getElementById('email').addEventListener('blur', element => {
     let email = element.target.value;
     let check = validateEmail(email);
     if (check === false) {
@@ -246,17 +80,21 @@ document.getElementById('email').addEventListener('blur', (element) => {
         document.getElementById('email').style.borderColor = "green";
     }
 });
-document.getElementById('nome').addEventListener('focus', (element) => {
-    document.getElementById('nome').style.color = "black";
-    document.getElementById('nome').style.borderColor = "inherit";
+
+document.getElementById('nome').addEventListener('focus', element => {
+    let nome = element.target.value;
+    if (nome.length >= 3) {
+        document.getElementById('nome').style.color = "black";
+        document.getElementById('nome').style.borderColor = "inherit";
+    }
 });
 
-document.getElementById('nome').addEventListener('blur', (element) => {
-    let email = element.target.value;
-
-    if (email.length < 3) {
+document.getElementById('nome').addEventListener('blur', element => {
+    let nome = element.target.value;
+    if (nome.length < 3) {
         alert("O nome deve conter mais de 2 caracteres.", 'danger');
         document.getElementById('nome').style.color = "red";
+        document.getElementById('nome').style.borderColor = "red";
         document.getElementById('nome').style.borderColor = "red";
     } else {
         document.getElementById('nome').style.color = "green";
@@ -264,10 +102,10 @@ document.getElementById('nome').addEventListener('blur', (element) => {
     }
 });
 
-document.getElementById('sobrenome').addEventListener('blur', (element) => {
-    let email = element.target.value;
+document.getElementById('sobrenome').addEventListener('blur', element => {
+    let sobrenome = element.target.value;
 
-    if (email.length < 1) {
+    if (sobrenome.length < 1) {
         alert("O sobrenome deve conter mais de 1 caracteres.", 'danger');
         document.getElementById('sobrenome').style.color = "red";
         document.getElementById('sobrenome').style.borderColor = "red";
@@ -277,88 +115,90 @@ document.getElementById('sobrenome').addEventListener('blur', (element) => {
     }
 });
 
-document.getElementById('telefone').addEventListener('blur', (element) => {
-    let telefone = element.target.value;
-    telefone = onlynum(telefone.toString());
-    if (!isNaN(telefone)) {
-        let check = maskTelefone(telefone);
-        if (check === false) {
-            alert("Telefone inválido! Digite um telefone dentro do Padrão para continuar:  (11) 9999-9999 ou (11) 99999-9999)", 'danger');
-        }
+document.getElementById('rg').addEventListener('blur', element => {
+    let rg = element.target.value;
+    if (rg.length < 12) {
+        alert("O rg deve conter 9 digitos.", 'danger');
+        document.getElementById('rg').style.color = "red";
+        document.getElementById('rg').style.borderColor = "red";
+    } else {
+        document.getElementById('rg').style.color = "green";
+        document.getElementById('rg').style.borderColor = "green";
     }
 });
 
-function checkNumber(obj) {
-    obj.value = onlynum(obj.value);
-    if (obj.value.length > 11) {
-        obj.value = obj.value.slice(0, obj.maxLength);
-    }
-
-}
-
-// valida email
-function validateEmail(email) {
-    var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-    if (reg.test(email)) {
-        return true;
+document.getElementById('cpf').addEventListener('blur', element => {
+    let rg = element.target.value;
+    if (rg.length < 12) {
+        alert("O cpf deve conter 11 digitos.", 'danger');
+        document.getElementById('cpf').style.color = "red";
+        document.getElementById('cpf').style.borderColor = "red";
     } else {
-        return false;
+        document.getElementById('cpf').style.color = "green";
+        document.getElementById('cpf').style.borderColor = "green";
     }
-}
+});
 
-// valida telefone
-function maskTelefone(telefone) {
-    const textoAtual = telefone.toString();
-    if (textoAtual.length === 11) {
-        const parte1 = textoAtual.slice(0, 2);
-        const parte2 = textoAtual.slice(2, 7);
-        const parte3 = textoAtual.slice(7, 11);
-        textoAjustado = `(${parte1}) ${parte2} - ${parte3}`;
-        document.getElementById('telefone').value = textoAjustado;
-        return true;
-    } else if (textoAtual.length === 10) {
-        const parte1 = textoAtual.slice(0, 2);
-        const parte2 = textoAtual.slice(2, 6);
-        const parte3 = textoAtual.slice(6, 10);
-        textoAjustado = `(${parte1}) ${parte2} - ${parte3}`;
-        document.getElementById('telefone').value = textoAjustado;
-        return true;
+document.getElementById('cep').addEventListener('blur', element => {
+    let cep = element.target.value;
+
+    if (cep.length < 10) {
+        alert("O cpf deve conter 8 digitos.", 'danger');
+        document.getElementById('cep').style.color = "red";
+        document.getElementById('cep').style.borderColor = "red";
     } else {
-        return false;
+        document.getElementById('cep').style.color = "green";
+        document.getElementById('cep').style.borderColor = "green";
     }
-}
+});
 
-function onlynum(str) {
-    let numsStr = str.replace(/[^0-9]/g, '');
-    return numsStr;
-}
-
-let searchUser = (evt) => {
-    let search = evt.target.value.toLowerCase();
-    console.log(search);
-    let resultSearch = listCadastro.filter(resul => {
-        return resul.nome.toLowerCase().includes(search) ||
-            resul.sobrenome.toLowerCase().includes(search) ||
-            resul.email.toLowerCase().includes(search);
-    });
-
-    if (resultSearch < 1) {
-        listSearch = [];
-        setList("Lcadastro");
+document.getElementById('telefone').addEventListener('blur', element => {
+    let tel = element.target.value;
+    if (tel.length < 15) {
+        alert("O telefone deve conter 2 digitos do DDD e 9 digitos do número.", 'danger');
+        document.getElementById('telefone').style.color = "red";
+        document.getElementById('telefone').style.borderColor = "red";
     } else {
-        listSearch = resultSearch;
-        setList("Lsearch");
+        document.getElementById('telefone').style.color = "green";
+        document.getElementById('telefone').style.borderColor = "green";
     }
-};
+});
+
+document.getElementById('cadastrar_form').addEventListener('click', element => {
+    element.preventDefault();
+    cadastrar();
+});
+
+document.getElementById('cadastrar_list').addEventListener('click', element => {
+    element.preventDefault();
+    mostraCadastro();
+});
+
+document.getElementById('fechaAlert').addEventListener('click', element => {
+    closeAlert();
+});
+
+document.getElementById('header-home').addEventListener('click', element => {
+    element.preventDefault();
+    mostraIframe();
+});
+
+document.getElementById('header-cadastrar').addEventListener('click', element => {
+    element.preventDefault();
+    mostraCadastro();
+});
+
+document.getElementById('header-cadastrar').addEventListener('click', element => {
+    element.preventDefault();
+    mostraCadastro();
+});
+
+document.getElementById('header-lista').addEventListener('click', element => {
+    element.preventDefault();
+    mostraLista();
+});
 
 search.oninput = (evt) => {
     mostraLista();
     searchUser(evt);
 };
-
-function scroolToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-}

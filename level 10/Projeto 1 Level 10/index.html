@@ -7,35 +7,52 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" media="screen" />
     <title>Desafio Level 9</title>
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="https://faculdadeiv2.com.br/" target="_blanck">
-                    <img src="icon/logo_facu.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                    <img src="icon/logo_facu.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
                     Faculdade Iv2
                 </a>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#" onclick="mostraIframe()">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#" onclick="mostraCadastro()">Cadastrar</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#" onclick="mostraLista()">Lista
-                                Cadastrados</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" id="search"
-                            aria-label="Search">
-                    </form>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <!-- <a class="navbar-brand" href="https://faculdadeiv2.com.br/" target="_blanck"> -->
+                        <img src="icon/logo_facu.png" alt="" width="50" height="50"
+                            class="d-inline-block align-text-top">
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Faculdade Iv2</h5>
+
+                        <!-- </a> -->
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body bg-primary">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#" id="header-home">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#" id="header-cadastrar">Cadastrar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#" id="header-lista">Lista
+                                    Cadastrados</a>
+                            </li>
+                        </ul>
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Search" id="search"
+                                aria-label="Search">
+                        </form>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -44,9 +61,6 @@
         <section id="sec_iframe1" style="display:none">
             <iframe src="https://beginnerspro.faculdadeiv2.com.br/" width="100%" height="600px" style="border:none;">
             </iframe>
-        </section>
-        <section id="sec_alert">
-            <div id="liveAlertPlaceholder"></div>
         </section>
         <section id="sec_form" style="display:none">
             <form>
@@ -63,11 +77,11 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="rg" class="form-label">RG</label>
-                        <input type="text" class="form-control" id="rg">
+                        <input type="text" class="form-control" id="rg" maxlength="12">
                     </div>
                     <div class="col-md-6">
                         <label for="cpf" class="form-label">CPF</label>
-                        <input type="text" class="form-control" id="cpf">
+                        <input type="text" class="form-control" id="cpf" maxlength="14">
                     </div>
                 </div>
                 <div class="row">
@@ -77,14 +91,15 @@
                     </div>
                     <div class="col-md-6">
                         <label for="telefone" class="form-label">Telefone</label>
-                        <input type="text" placeholder="(99) 99999 - 9999" oninput="checkNumber(this)"
-                            class="form-control" id="telefone">
+                        <input type="text" placeholder="(99) 99999 - 9999" class="form-control" id="telefone"
+                            maxlength="15">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <label for="cep" class="form-label">CEP</label>
-                        <input type="text" class="form-control" id="cep" onblur="pesquisacep(this.value);">
+                        <input type="text" class="form-control" id="cep" onblur="pesquisacep(this.value);"
+                            maxlength="11">
                     </div>
                     <div class="col-md-6">
                         <label for="numero" class="form-label">Numero</label>
@@ -113,50 +128,46 @@
                 </div>
 
             </form>
-            <div class="row justify-content-center">
-                <div class="col-md-3">
-                    <input class="btn btn-success" type="submit" value="Cadastrar" id="cadastrar_form"
-                        onclick="cadastrar()">
+            <div class="row justify-content-center  div-btn-cadastrar">
+                <div class="col-md-6 align-items-center">
+                    <button class="btn btn-success" width="100%" id="cadastrar_form">Cadastrar</button>
                 </div>
             </div>
         </section>
         <section class="row" id="sec_btn_cadastrar">
-            <div class="row justify-content-center">
-                <div class="col-md-3">
-                    <input class="btn btn-info" type="submit" value="Cadastro" id="cadastrar_list"
-                        onclick="mostraCadastro()">
+            <div class="row justify-content-center div-btn-cadastro">
+                <div class="col-md-6 align-items-center">
+                    <button class=" btn btn-info " width="100%" id="cadastrar_list">Cadastro</button>
                 </div>
             </div>
         </section>
         <section id="sec_table">
             <table class="table table-dark table-hover">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>RG</th>
-                        <th>CPF</th>
-                        <th>E-mail</th>
-                        <th>Telefone</th>
-                        <th>Cidade - Estado</th>
-                        <th>Rua - Número</th>
-                        <th>Data do Cadastro</th>
-                        <th>Editar</th>
-                        <th>Excluir</th>
-                    </tr>
-                </thead>
                 <tbody>
 
                 </tbody>
             </table>
         </section>
     </main>
-    <footer>
-        <div class="text-wrap mx-auto row" style="width: 40rem;" id="div_footer">
-            <p class="text-center fs-4 col-md-6 me-auto mb-2">2022 Beginners PRO</p>
-            <p class="text-center fs-4 fst-italic col-md-6 me-auto mb-2">Fabio Novais</p>
+    <section id="modal-fundo" style="display:none"></section>
+    <section id="sec_alert" style="display:none">
+        <div id="liveAlertPlaceholder">
+            <div id="div-alert" role="alert">
+                <img src="icon/logo-header.png" alt="" width="48" height="60">
+                <span id="span-alert">
+                </span>
+                <button type="button" class="btn-close closeAlert" id="fechaAlert" aria-label="Close"></button>
+            </div>
         </div>
-    </footer>
-    <script src="script.js"></script>
+    </section>
+    <div class="container-footer">
+        <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 my-4">
+            <p class="col-md-4 mb-0 text-center text-muted"> © 2021 Beginners PRO </p>
+
+            <p class="col-md-4 mb-0 text-center text-muted"> Fabio Novais </p>
+        </footer>
+    </div>
+    <script type="module" src="script.js" defer></script>
     <script src="cep.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
