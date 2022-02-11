@@ -1,29 +1,21 @@
-const labels = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-];
+function myChart1() {
+    if (myChart instanceof Chart) {
+        myChart.destroy();
+    }
+    myChart = new Chart(
+        document.getElementById('myChart'), {
+            type: 'line',
+            data: {
+                labels: arrayMeses,
+                datasets: [{
+                    label: 'Media salarial anual',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: arraySalarios,
+                }]
+            },
+            options: {}
+        }
+    );
 
-const data = {
-    labels: labels,
-    datasets: [{
-        label: 'My First dataset',
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgb(255, 99, 132)',
-        data: [0, 10, 5, 2, 20, 30, 45],
-    }]
-};
-
-const config = {
-    type: 'line',
-    data: data,
-    options: {}
-};
-
-const myChart = new Chart(
-    document.getElementById('myChart'),
-    config
-);
+}

@@ -5,16 +5,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Gráficos</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
-    <canvas id="myChart"></canvas>
-    <input type="file" id="inputCSV" onchange="pegaCSV1(this)">
-    <div id="CSVsaida"></div>
+    <section id="inputs">
+        <form>
+            <select name="mes" id="mes">
+                <option value="" selected>Selecione o mes</option>
+                <option id="jan" value="jan-01">janeiro</option>
+                <option id="fev" value="fev-02">Fevereiro</option>
+                <option id="mar" value="mar-03">Março</option>
+                <option id="abr" value="abr-04">Abril</option>
+                <option id="mai" value="mai-05">Maio</option>
+                <option id="jun" value="jun-06">Junho</option>
+                <option id="jul" value="jul-07">Julho</option>
+                <option id="ago" value="ago-08">Agosto</option>
+                <option id="set" value="set-09">Setembro</option>
+                <option id="out" value="out-10">Outubro</option>
+                <option id="nov" value="nov-11">Novembro</option>
+                <option id="dez" value="dez-12">Dezembro</option>
+            </select>
+            <input type="text" id="salario" placeholder="R$ 0,00" maxlength="10" onkeyup="validaMoeda(this)" />
+            <button>Carregar Grafico</button>
+            <button id="reiniciar">Reinciar</button>
+        </form>
+    </section>
+    <section id="canvas">
+        <canvas id="myChart"></canvas>
+    </section>
     <script src="script.js"></script>
-    <script src="readCSV.js"></script>
     <script src="graphic.js"></script>
 </body>
 

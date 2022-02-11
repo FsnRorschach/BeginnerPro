@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: sans-serif;
+}
+
+#inputs {
+    width: 100%;
+    height: 100px;
+    background: #343fdf;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+select,
+input,
+button {
+    width: 200px;
+    height: 50px;
+    border: none;
+    border-radius: 15px;
+}
+
+button {
+    background: #34df3d;
+}
+
+#reiniciar {
+    background: #fd65659f;
+}
+
+#canvas {
+    width: 80% !important;
+    margin: auto;
+}
